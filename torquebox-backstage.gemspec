@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
           [%q<sass>, ">= 3.1.2"],
           [%q<jmx>, "= 0.9"],
           [%q<json>, ">= 1.5.1"],
-          [%q<torquebox>, "~> 2.0"],
+          [%q<torquebox>, [">= 2.0", "< 4.0"]],
           [%q<tobias-sinatra-url-for>, "= 0.2.1"],
           [%q<rack-accept>, "~> 0.4.4"],
           [%q<thor>, "~> 0.14"],
@@ -54,19 +54,19 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       deps.each do |name, version, dev|
         if dev
-          s.add_development_dependency(name, [version])
+          s.add_development_dependency(name, Array(version))
         else
-          s.add_runtime_dependency(name, [version])
+          s.add_runtime_dependency(name, Array(version))
         end
       end
     else
       deps.each do |name, version|
-        s.add_dependency(name, [version])
+        s.add_dependency(name, Array(version))
       end
     end
   else
     deps.each do |name, version|
-      s.add_dependency(name, [version])
+      s.add_dependency(name, Array(version))
     end
   end
 end
